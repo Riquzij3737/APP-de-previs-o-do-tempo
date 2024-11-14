@@ -3,23 +3,23 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Windows.Forms;
-using System.Drawing;  // Para manipulação de imagens
+using System.Drawing;  // Para manipulaÃ§Ã£o de imagens
 
 namespace APDT
 {
     public partial class Form1 : Form
     {
-        private static readonly string apiKey = "c0243002a578fe19c8a3b05d6b816c7b"; // Substitua com sua chave de API
+        private static readonly string apiKey = "SUA_CHAVE_DE_API"; 
         private static readonly string apiUrl = "http://api.openweathermap.org/data/2.5/weather";
 
         private string city;
-        private static readonly HttpClient client = new HttpClient();  // Instância reutilizável do HttpClient
+        private static readonly HttpClient client = new HttpClient();  
 
         public Form1(string city)
         {
             InitializeComponent();
             this.city = city;
-            Dados(); // Chama o método de dados para preencher as informações ao iniciar o formulário
+            Dados(); // Chama o mÃ©todo de dados para preencher as informaÃ§Ãµes ao iniciar o formulÃ¡rio
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace APDT
 
         private void label3_Click(object sender, EventArgs e)
         {
-            // Código não está sendo utilizado, você pode adicionar algo se necessário
+            
         }
 
         private async void Dados()
@@ -38,18 +38,18 @@ namespace APDT
 
             if (weatherData != null)
             {
-                // Atualiza os labels com as informações de clima
-                this.Text = $"Previsão do tempo de {weatherData.Name}";
-                label6.Text = $"{weatherData.Main.Temp} °C";
-                label2.Text = $"Temp.Min: {weatherData.Main.TempMin} °C";
-                label3.Text = $"Temp.Max: {weatherData.Main.TempMax} °C";
+                // Atualiza os labels com as informaÃ§Ãµes de clima
+                this.Text = $"PrevisÃ£o do tempo de {weatherData.Name}";
+                label6.Text = $"{weatherData.Main.Temp} Â°C";
+                label2.Text = $"Temp.Min: {weatherData.Main.TempMin} Â°C";
+                label3.Text = $"Temp.Max: {weatherData.Main.TempMax} Â°C";
 
-                // Verifica se a descrição do clima existe antes de acessar
+                // Verifica se a descriÃ§Ã£o do clima existe antes de acessar
                 if (weatherData.Weather != null && weatherData.Weather.Length > 0)
                 {
                     label4.Text = $"{weatherData.Weather[0].Description}";
 
-                    // Verifica a descrição do clima e realiza uma ação com base nela
+                    // Verifica a descriÃ§Ã£o do clima e realiza uma aÃ§Ã£o com base nela
                     string description = weatherData.Weather[0].Description.ToLower();
                     Console.WriteLine($"Clima atual em {city}: {description}");                    
 
@@ -73,7 +73,7 @@ namespace APDT
                         }
                         else
                         {
-                            Console.WriteLine("O clima está imprevisível! Fique atento às mudanças.");
+                            Console.WriteLine("O clima estÃ¡ imprevisÃ­vel! Fique atento Ã s mudanÃ§as.");
                         }
                     }
                     catch (Exception ex)
@@ -85,11 +85,11 @@ namespace APDT
             }
             else
             {
-                Console.WriteLine("Não foi possível obter as informações do clima.");
+                Console.WriteLine("NÃ£o foi possÃ­vel obter as informaÃ§Ãµes do clima.");
             }
         }
 
-        // Método assíncrono para buscar dados de clima da API
+        // MÃ©todo assÃ­ncrono para buscar dados de clima da API
         public async Task<WeatherResponse> GetWeatherDataAsync(string city)
         {
             try
